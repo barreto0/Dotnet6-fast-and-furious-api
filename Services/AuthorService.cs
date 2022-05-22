@@ -13,6 +13,19 @@ namespace FastAndFuriousApi.Services
         {
             db = context;
         }
+
+        public async Task<ResponseModel> ListAuthors()
+        {
+            try
+            {
+                List<Author> authorsFromDb = db.Authors.ToList();
+                return response.BuildOkResponse("Busca realizada com sucesso", authorsFromDb);
+            }
+            catch (System.Exception e)
+            {
+                return response.BuildErrorResponse("Ops! Algo aconteceu durante a listagem de Autores, por favor tente novamente.", new { ErrorMessage = e.Message });
+            }
+        }
         public async Task<ResponseModel> RegisterAuthor(AuthorModel authorRequest)
         {
             try

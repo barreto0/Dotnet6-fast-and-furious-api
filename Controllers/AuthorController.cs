@@ -17,6 +17,18 @@ namespace FastAndFuriousApi.Controllers
             _authorService = authorService;
         }
 
+        [HttpGet]
+        public async Task<ActionResult> ListAuthors()
+        {
+            ResponseModel response = await _authorService.ListAuthors();
+            ObjectResult result = new ObjectResult(response)
+            {
+                StatusCode = response.StatusCode
+            };
+            return result;
+        }
+
+
 
         [HttpPost]
         public async Task<ActionResult> RegisterAuthor(AuthorModel author)

@@ -18,8 +18,8 @@ namespace FastAndFuriousApi.Services
         {
             try
             {
-                List<Phrase> phraseFromDb = db.Phrases.Where(p => p.Active == true).Include(p => p.Author).ToList();
-                return response.BuildOkResponse("Busca realizada com sucesso", phraseFromDb);
+                List<Phrase> phrasesFromDb = db.Phrases.Where(p => p.Active == true).Include(p => p.Author).ToList();
+                return response.BuildOkResponse("Busca realizada com sucesso", phrasesFromDb);
             }
             catch (System.Exception e)
             {
