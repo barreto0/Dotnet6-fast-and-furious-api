@@ -13,6 +13,19 @@ namespace FastAndFuriousApi.Services
         {
             db = context;
         }
+
+        public async Task<ResponseModel> ListPhrases()
+        {
+            try
+            {
+                List<Phrase> phraseFromDb = db.Phrases.Where(p => p.Active == true).Include(p => p.Author).ToList();
+                return response.BuildOkResponse("Busca realizada com sucesso", phraseFromDb);
+            }
+            catch (System.Exception e)
+            {
+                return response.BuildErrorResponse("Ops! Algo aconteceu durante a listagem de Frase, por favor tente novamente.", new { ErrorMessage = e.Message });
+            }
+        }
         public async Task<ResponseModel> RegisterPhrase(PhraseModel phraseRequest)
         {
             try

@@ -17,6 +17,17 @@ namespace FastAndFuriousApi.Controllers
             _phraseService = phraseService;
         }
 
+        [HttpGet]
+        public async Task<ActionResult> ListPhrases()
+        {
+            ResponseModel response = await _phraseService.ListPhrases();
+            ObjectResult result = new ObjectResult(response)
+            {
+                StatusCode = response.StatusCode
+            };
+            return result;
+        }
+
 
         [HttpPost]
         public async Task<ActionResult> RegisterPhrase(PhraseModel phrase)
