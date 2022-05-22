@@ -1,4 +1,5 @@
 using FastAndFuriousApi.Data.IWantApp.Data;
+using FastAndFuriousApi.Services;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
@@ -8,6 +9,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<AuthorService, AuthorService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
