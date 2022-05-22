@@ -10,6 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<AuthorService, AuthorService>();
+builder.Services.AddScoped<PhraseService, PhraseService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -18,19 +18,20 @@ namespace FastAndFuriousApi.Services
             try
             {
                 Author authorFromDb = await db.Authors.Where(a => a.Name == authorRequest.Name).FirstOrDefaultAsync();
-                if (authorFromDb == null)
+                if (authorFromDb != null)
                 {
-                    Author author = new Author
-                    {
-                        Name = authorRequest.Name,
-                        Movie = authorRequest.Movie,
-                        CreatedAt = DateTime.Now
-                    };
-                    db.Authors.Add(author);
-                    db.SaveChanges();
-                    return response.BuildOkResponse("Autor cadastrado com sucesso", author);
+                    return response.BuildBadRequestResponse("Autor já cadastrado no sistema", new { });
+
                 }
-                return response.BuildBadRequestResponse("Autor já cadastrado no sistema", new { });
+                Author author = new Author
+                {
+                    Name = authorRequest.Name,
+                    Movie = authorRequest.Movie,
+                    CreatedAt = DateTime.Now
+                };
+                await db.Authors.AddAsync(author);
+                await db.SaveChangesAsync();
+                return response.BuildOkResponse("Autor cadastrado com sucesso", author);
             }
             catch (System.Exception e)
             {
