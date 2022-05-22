@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "7Vx52E89OAJVW06hZla9I07xUNcW1n2fa8m/1csRk2cJ4t9ZY4ebK3cT/6w0C9sOG0O6966DGkWvtcgOt6Qy9Q==",
+  "success": true,
+  "projectFilePath": "/home/barreto/Documents/Development/projetos/fast-and-furious-api-dotnet/fast-and-furious-api-dotnet.csproj",
+  "expectedPackageFiles": [
+    "/home/barreto/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/home/barreto/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/barreto/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/home/barreto/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/home/barreto/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/home/barreto/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
