@@ -39,5 +39,17 @@ namespace FastAndFuriousApi.Controllers
             };
             return result;
         }
+
+        [HttpGet]
+        [Route("change-phrase-status/{phraseId}")]
+        public async Task<ActionResult> ChangePhraseStatus([FromRoute] Guid phraseId)
+        {
+            ResponseModel response = await _phraseService.ChangePhraseStatus(phraseId);
+            ObjectResult result = new ObjectResult(response)
+            {
+                StatusCode = response.StatusCode
+            };
+            return result;
+        }
     }
 }

@@ -58,5 +58,24 @@ namespace FastAndFuriousApi.Services
 
             }
         }
+
+        public async Task<ResponseModel> ChangePhraseStatus(Guid phraseId)
+        {
+            try
+            {
+                Phrase phraseFromDb = await db.Phrases.Where(a => a.Id == phraseId).FirstOrDefaultAsync();
+                if (phraseFromDb == null)
+                {
+                    return response.BuildBadRequestResponse("Frase não encontrada", new { });
+                }
+                phraseFromDb.Active = !phraseFromDb.Active;
+                await db.SaveChangesAsync();
+                return response.BuildOkResponse("Status de frase atualizado com sucesso", phraseFromDb);
+            }
+            catch (System.Exception e)
+            {
+                return response.BuildErrorResponse("Ops! Algo aconteceu durante a mudança de status da Frase, por favor tente novamente.", new { ErrorMessage = e.Message });
+            }
+        }
     }
 }
