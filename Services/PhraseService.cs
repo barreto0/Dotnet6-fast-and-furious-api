@@ -14,11 +14,17 @@ namespace FastAndFuriousApi.Services
             db = context;
         }
 
+        public async Task<List<Phrase>> GetAllPhrasesFromDb()
+        {
+            List<Phrase> phrasesFromDb = db.Phrases.Where(p => p.Active == true).Include(p => p.Author).ToList();
+            return phrasesFromDb;
+        }
+
         public async Task<ResponseModel> ListPhrases()
         {
             try
             {
-                List<Phrase> phrasesFromDb = db.Phrases.Where(p => p.Active == true).Include(p => p.Author).ToList();
+                List<Phrase> phrasesFromDb = await GetAllPhrasesFromDb();
                 return response.BuildOkResponse("Busca realizada com sucesso", phrasesFromDb);
             }
             catch (System.Exception e)
@@ -75,6 +81,24 @@ namespace FastAndFuriousApi.Services
             catch (System.Exception e)
             {
                 return response.BuildErrorResponse("Ops! Algo aconteceu durante a mudança de status da Frase, por favor tente novamente.", new { ErrorMessage = e.Message });
+            }
+        }
+
+        public async Task<ResponseModel> ListRandomPhrase()
+        {
+            try
+            {
+                List<Phrase> phrasesFromDb = await GetAllPhrasesFromDb();
+                var random = new Random();
+                int index = random.Next(phrasesFromDb.Count);
+                Phrase phrase = phrasesFromDb[index];
+                return response.BuildOkResponse("Frase resgatada com sucesso", phrase);
+            }
+            catch (System.Exception e)
+            {
+
+                return response.BuildErrorResponse("Ops! Algo aconteceu durante a randomização de Frase, por favor tente novamente.", new { ErrorMessage = e.Message });
+
             }
         }
     }

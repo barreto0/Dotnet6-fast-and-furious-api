@@ -1,4 +1,3 @@
-using FastAndFuriousApi.Data.IWantApp.Data;
 using FastAndFuriousApi.Models;
 using FastAndFuriousApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +44,18 @@ namespace FastAndFuriousApi.Controllers
         public async Task<ActionResult> ChangePhraseStatus([FromRoute] Guid phraseId)
         {
             ResponseModel response = await _phraseService.ChangePhraseStatus(phraseId);
+            ObjectResult result = new ObjectResult(response)
+            {
+                StatusCode = response.StatusCode
+            };
+            return result;
+        }
+
+        [HttpGet]
+        [Route("random")]
+        public async Task<ActionResult> ListRandomPhrase()
+        {
+            ResponseModel response = await _phraseService.ListRandomPhrase();
             ObjectResult result = new ObjectResult(response)
             {
                 StatusCode = response.StatusCode
