@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Zc5EQlLE6D5y0vhvjyC3XPwii1UHqRavV4DxgtUKmeY0Em0JGxEsd8I8/AnSDCfpJV0hkcK38tjb0EkOCVa44A==",
+  "dgSpecHash": "wPN7mDaCXaPIz8f4yQoRda5ZrO/vF1UGbkxc2hpxo5b9COMk0/GE3PBneRWwgh+O/00bpJg/Ovdzdbx1j0jFNA==",
   "success": true,
   "projectFilePath": "/home/barreto/Documents/Development/projetos/fast-and-furious-api-dotnet/fast-and-furious-api-dotnet.csproj",
   "expectedPackageFiles": [
+    "/home/barreto/.nuget/packages/flunt/2.0.5/flunt.2.0.5.nupkg.sha512",
     "/home/barreto/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/home/barreto/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/home/barreto/.nuget/packages/microsoft.data.sqlclient/2.1.4/microsoft.data.sqlclient.2.1.4.nupkg.sha512",

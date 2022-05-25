@@ -17,6 +17,7 @@ namespace FastAndFuriousApi.Services
         public async Task<List<Phrase>> GetAllPhrasesFromDb()
         {
             List<Phrase> phrasesFromDb = db.Phrases.Where(p => p.Active == true).Include(p => p.Author).ToList();
+            // Select new PhraseModel?
             return phrasesFromDb;
         }
 
@@ -36,6 +37,11 @@ namespace FastAndFuriousApi.Services
         {
             try
             {
+                if (String.IsNullOrEmpty(phraseRequest.Text))
+                {
+                    return response.BuildBadRequestResponse("Campo de texto não pode ser vazio ou nulo", new { });
+                }
+
                 Phrase phraseFromDb = await db.Phrases.Where(a => a.Text == phraseRequest.Text).FirstOrDefaultAsync();
                 Author authorFromDb = await db.Authors.Where(a => a.Id == phraseRequest.AuthorId).FirstOrDefaultAsync();
 
@@ -47,6 +53,7 @@ namespace FastAndFuriousApi.Services
                 {
                     return response.BuildBadRequestResponse("Autor não encontrado na base de dados, solicite o cadastro no mesmo", new { });
                 }
+
                 Phrase phrase = new Phrase
                 {
                     Text = phraseRequest.Text,
@@ -75,6 +82,7 @@ namespace FastAndFuriousApi.Services
                     return response.BuildBadRequestResponse("Frase não encontrada", new { });
                 }
                 phraseFromDb.Active = !phraseFromDb.Active;
+                phraseFromDb.UpdatedAt = DateTime.Now;
                 await db.SaveChangesAsync();
                 return response.BuildOkResponse("Status de frase atualizado com sucesso", phraseFromDb);
             }

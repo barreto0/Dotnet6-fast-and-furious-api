@@ -30,6 +30,14 @@ namespace FastAndFuriousApi.Services
         {
             try
             {
+                if (String.IsNullOrEmpty(authorRequest.Name))
+                {
+                    return response.BuildBadRequestResponse("Campo Name não pode ser vazio ou nulo", new { });
+                }
+                if (String.IsNullOrEmpty(authorRequest.Movie))
+                {
+                    return response.BuildBadRequestResponse("Campo Movie não pode ser vazio ou nulo", new { });
+                }
                 Author authorFromDb = await db.Authors.Where(a => a.Name == authorRequest.Name).FirstOrDefaultAsync();
                 if (authorFromDb != null)
                 {
