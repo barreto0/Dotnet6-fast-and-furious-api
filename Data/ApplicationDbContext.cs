@@ -17,6 +17,7 @@ namespace FastAndFuriousApi.Data
 
             protected override void OnModelCreating(ModelBuilder modelBuilder)
             {
+                base.OnModelCreating(modelBuilder); //necessario para o identity instaciar as tabelas
                 modelBuilder.Entity<Author>().Property(p => p.Name).IsRequired();
                 modelBuilder.Entity<Author>().Property(p => p.Movie).IsRequired();
                 modelBuilder.Entity<Phrase>().Property(p => p.Text).IsRequired();
