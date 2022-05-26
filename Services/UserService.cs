@@ -1,8 +1,6 @@
-using FastAndFuriousApi.Data.IWantApp.Data;
-using FastAndFuriousApi.Domain.Quote;
+using System.Security.Claims;
 using FastAndFuriousApi.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace FastAndFuriousApi.Services
 {
@@ -29,6 +27,17 @@ namespace FastAndFuriousApi.Services
             {
                 return response.BuildBadRequestResponse("Um ou mais erros de validação ocorreram", new { Errors = result.Errors });
             }
+
+            var userClaims = new List<Claim> {
+                new Claim("Name", userRequest.Name),
+                new Claim("Nickname", userRequest.Nickname)
+            };
+            var claimResult = _userManager.AddClaimsAsync(user, userClaims).Result;
+            if (!result.Succeeded)
+            {
+                return response.BuildBadRequestResponse("Um ou mais erros de validação ocorreram", new { Errors = claimResult.Errors });
+            }
+
             return response.BuildOkResponse("Usuário cadastrado com sucesso", user);
         }
     }
