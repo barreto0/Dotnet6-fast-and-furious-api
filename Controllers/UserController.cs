@@ -16,6 +16,17 @@ namespace FastAndFuriousApi.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetUsers([FromQuery] int page, int qtd)
+        {
+            ResponseModel response = await _userService.GetUsers(page, qtd);
+            ObjectResult result = new ObjectResult(response)
+            {
+                StatusCode = response.StatusCode
+            };
+            return result;
+        }
+
 
         [HttpPost]
         public async Task<ActionResult> RegisterUser(UserModel userRequest)
