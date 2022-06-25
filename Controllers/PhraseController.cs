@@ -1,10 +1,12 @@
 using FastAndFuriousApi.Models;
 using FastAndFuriousApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FastAndFuriousApi.Controllers
 {
     [Route("[controller]")]
+    [Authorize("Bearer")]
     [ApiController]
 
     public class PhraseController : ControllerBase
@@ -17,6 +19,7 @@ namespace FastAndFuriousApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult> ListPhrases()
         {
             ResponseModel response = await _phraseService.ListPhrases();
@@ -52,6 +55,7 @@ namespace FastAndFuriousApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("random")]
         public async Task<ActionResult> ListRandomPhrase()
         {

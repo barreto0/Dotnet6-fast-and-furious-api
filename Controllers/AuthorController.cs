@@ -1,11 +1,13 @@
 using FastAndFuriousApi.Data.IWantApp.Data;
 using FastAndFuriousApi.Models;
 using FastAndFuriousApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FastAndFuriousApi.Controllers
 {
     [Route("[controller]")]
+    [Authorize("Bearer")]
     [ApiController]
 
     public class AuthorController : ControllerBase
@@ -18,6 +20,7 @@ namespace FastAndFuriousApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult> ListAuthors()
         {
             ResponseModel response = await _authorService.ListAuthors();

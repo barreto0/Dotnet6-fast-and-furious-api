@@ -13,11 +13,6 @@ namespace MalbyApi.Controllers
         [HttpGet]
         public IActionResult HelloWorld()
         {
-            // ResponseModel response = new ResponseModel
-            // {
-            //     StatusCode = 200,
-            //     Content = new { status = 200, content = "Healthy" }
-            // };
             ResponseModel response = new ResponseModel
             {
                 StatusCode = 200,

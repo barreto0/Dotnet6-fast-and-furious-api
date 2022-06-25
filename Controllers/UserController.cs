@@ -1,10 +1,12 @@
 using FastAndFuriousApi.Models;
 using FastAndFuriousApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FastAndFuriousApi.Controllers
 {
     [Route("[controller]")]
+    [Authorize("Bearer")]
     [ApiController]
 
     public class UserController : ControllerBase
@@ -14,6 +16,19 @@ namespace FastAndFuriousApi.Controllers
         public UserController(UserService userService)
         {
             _userService = userService;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("Login")]
+        public async Task<ActionResult> Login(UserLoginModel userLogin)
+        {
+            ResponseModel response = await _userService.Login(userLogin);
+            ObjectResult result = new ObjectResult(response)
+            {
+                StatusCode = response.StatusCode
+            };
+            return result;
         }
 
         [HttpGet]
