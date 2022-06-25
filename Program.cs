@@ -3,9 +3,11 @@ using FastAndFuriousApi.Data.IWantApp.Data;
 using FastAndFuriousApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,4 +64,40 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+        context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+        var error = context.Features.Get<IExceptionHandlerFeature>();
+        if (error != null)
+        {
+            var ex = error.Error;
+
+            await context.Response.WriteAsync(new ErrorDto()
+            {
+                Code = 500,
+                Message = ex.Message
+
+            }.ToString(), Encoding.UTF8);
+        }
+    });
+});
+
 app.Run();
+
+public class ErrorDto
+{
+    public int Code { get; set; }
+    public string Message { get; set; }
+
+    // other fields
+
+    public override string ToString()
+    {
+        return JsonConvert.SerializeObject(this);
+    }
+}

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tfXogx+JRNlZ9aLV74AsXYRIaHacYrutswBwGIU9DKjAfYrgHYwzpRGsYELeBJqQ+frctWtkqrHbULcboqCFPQ==",
+  "dgSpecHash": "oL2+f96nWicvK4fOa0J7fzIE8OR2k+Tpn4lKr+MyXjDdsdRnDE8xhgs2o4ou0RDFKiW5EP2rSbBG75Nbv7IWGw==",
   "success": true,
   "projectFilePath": "/home/barreto/Documents/Development/projetos/fast-and-furious-api-dotnet/fast-and-furious-api-dotnet.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,9 @@
     "/home/barreto/.nuget/packages/microsoft.aspnetcore.cryptography.internal/6.0.5/microsoft.aspnetcore.cryptography.internal.6.0.5.nupkg.sha512",
     "/home/barreto/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/6.0.5/microsoft.aspnetcore.cryptography.keyderivation.6.0.5.nupkg.sha512",
     "/home/barreto/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/6.0.5/microsoft.aspnetcore.identity.entityframeworkcore.6.0.5.nupkg.sha512",
-    "/home/barreto/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
+    "/home/barreto/.nuget/packages/microsoft.aspnetcore.jsonpatch/3.1.2/microsoft.aspnetcore.jsonpatch.3.1.2.nupkg.sha512",
+    "/home/barreto/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/3.1.2/microsoft.aspnetcore.mvc.newtonsoftjson.3.1.2.nupkg.sha512",
+    "/home/barreto/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/barreto/.nuget/packages/microsoft.data.sqlclient/2.1.4/microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "/home/barreto/.nuget/packages/microsoft.data.sqlclient.sni.runtime/2.1.1/microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "/home/barreto/.nuget/packages/microsoft.data.sqlite.core/6.0.5/microsoft.data.sqlite.core.6.0.5.nupkg.sha512",
@@ -47,6 +49,8 @@
     "/home/barreto/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/home/barreto/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "/home/barreto/.nuget/packages/mysqlconnector/2.1.2/mysqlconnector.2.1.2.nupkg.sha512",
+    "/home/barreto/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
+    "/home/barreto/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/home/barreto/.nuget/packages/pomelo.entityframeworkcore.mysql/6.0.1/pomelo.entityframeworkcore.mysql.6.0.1.nupkg.sha512",
     "/home/barreto/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.0.6/sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
     "/home/barreto/.nuget/packages/sqlitepclraw.core/2.0.6/sqlitepclraw.core.2.0.6.nupkg.sha512",
