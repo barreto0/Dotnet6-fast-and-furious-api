@@ -67,7 +67,7 @@ namespace FastAndFuriousApi.Services
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Issuer = _configuration.GetSection("TokenAuthentication")["Issuer"],
                 Audience = _configuration.GetSection("TokenAuthentication")["Audience"],
-                Expires = DateTime.UtcNow.AddYears(10)
+
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return token;
@@ -121,12 +121,49 @@ namespace FastAndFuriousApi.Services
                     new Claim("Nickname", userRequest.Nickname)
                 };
                 var claimResult = _userManager.AddClaimsAsync(user, userClaims).Result;
-                if (!result.Succeeded)
+                if (!claimResult.Succeeded)
                 {
                     return response.BuildBadRequestResponse("Um ou mais erros de validação ocorreram", new { Errors = claimResult.Errors });
                 }
 
                 return response.BuildOkResponse("Usuário cadastrado com sucesso", user);
+            }
+            catch (System.Exception e)
+            {
+
+                return response.BuildErrorResponse("Ops! Algo aconteceu durante o cadastro de usuário, por favor tente novamente.", new { ErrorMessage = e.Message });
+
+            }
+        }
+
+        public async Task<ResponseModel> CreateAdmin()
+        {
+            try
+            {
+                UserModel userRequest = new UserModel(name: "Admin", nickname: "admin", email: "gabriel.barreto.dev@gmail.com", password: "@Teste123");
+                IdentityUser user = new IdentityUser
+                {
+                    UserName = userRequest.Email,
+                    Email = userRequest.Email
+                };
+                var result = _userManager.CreateAsync(user, userRequest.Password).Result;
+
+                if (!result.Succeeded)
+                {
+                    return response.BuildBadRequestResponse("Um ou mais erros de validação ocorreram", new { });
+                }
+
+                List<Claim> userClaims = new List<Claim> {
+                    new Claim("Name", userRequest.Name),
+                    new Claim("Nickname", userRequest.Nickname)
+                };
+                var claimResult = _userManager.AddClaimsAsync(user, userClaims).Result;
+                if (!result.Succeeded)
+                {
+                    return response.BuildBadRequestResponse("Um ou mais erros de validação ocorreram", new { });
+                }
+
+                return response.BuildOkResponse("Usuário cadastrado com sucesso", new { });
             }
             catch (System.Exception e)
             {

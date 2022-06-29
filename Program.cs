@@ -40,6 +40,15 @@ builder.Services.AddAuthorization(auth =>
         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
         .RequireAuthenticatedUser().Build());
 });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder => builder
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+    );
+
+});
 builder.Services.AddControllers();
 builder.Services.AddScoped<AuthorService, AuthorService>();
 builder.Services.AddScoped<PhraseService, PhraseService>();
@@ -50,6 +59,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors("CorsPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

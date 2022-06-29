@@ -31,10 +31,23 @@ namespace FastAndFuriousApi.Controllers
             return result;
         }
 
+        // [HttpGet]
+        // public async Task<ActionResult> GetUsers([FromQuery] int page, int qtd)
+        // {
+        //     ResponseModel response = await _userService.GetUsers(page, qtd);
+        //     ObjectResult result = new ObjectResult(response)
+        //     {
+        //         StatusCode = response.StatusCode
+        //     };
+        //     return result;
+        // }
+
         [HttpGet]
-        public async Task<ActionResult> GetUsers([FromQuery] int page, int qtd)
+        [AllowAnonymous]
+        [Route("create-admin")]
+        public async Task<ActionResult> CreateAdmin()
         {
-            ResponseModel response = await _userService.GetUsers(page, qtd);
+            ResponseModel response = await _userService.CreateAdmin();
             ObjectResult result = new ObjectResult(response)
             {
                 StatusCode = response.StatusCode
@@ -43,15 +56,15 @@ namespace FastAndFuriousApi.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<ActionResult> RegisterUser(UserModel userRequest)
-        {
-            ResponseModel response = await _userService.RegisterUser(userRequest);
-            ObjectResult result = new ObjectResult(response)
-            {
-                StatusCode = response.StatusCode
-            };
-            return result;
-        }
+        // [HttpPost]
+        // public async Task<ActionResult> RegisterUser(UserModel userRequest)
+        // {
+        //     ResponseModel response = await _userService.RegisterUser(userRequest);
+        //     ObjectResult result = new ObjectResult(response)
+        //     {
+        //         StatusCode = response.StatusCode
+        //     };
+        //     return result;
+        // }
     }
 }
